@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <!-- Mostrar la tabla de todos los vendedores -->
+    <div class="container mt-5">
+        <h3>Lista de Vendedores</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo de Documento</th>
+                    <th>Número de Documento</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Email</th>
+                    <th>Usuario</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in vendedores %}
+                <tr>
+                    <td>{{ item['vendedor']['idvendedores'] }}</td>
+                    <td>{{ item['vendedor']['tipo_documento'] }}</td>
+                    <td>{{ item['vendedor']['numero_documento'] }}</td>
+                    <td>{{ item['vendedor']['nombres_vendedor'] }}</td>
+                    <td>{{ item['vendedor']['telefono'] }}</td>
+                    <td>{{ item['vendedor']['direccion'] }}</td>
+                    <td>{{ item['vendedor']['email'] }}</td>
+                    <td>{{ item['usuario']['nombres_usuario'] }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">No hay vendedores registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+            
+        </table>
+    </div>
+
+{% endblock %}
+
+
+    
+
+   

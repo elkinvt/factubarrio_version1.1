@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Registrar Cliente</h2>
+    <div id="mensajeErrorGeneral" class="text-danger"></div>
+    <form  id="formCliente">
+        <div class="mb-3">
+            <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+            <select class="form-control form-control-sm" id="tipoDocumento" name="tipoDocumento" required>
+                <option value="">Seleccione tipo de documento</option>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+                <option value="PA">Pasaporte</option>
+            </select>
+            <div id="tipoDocumentoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="numeroDocumento" class="form-label">Número de Documento</label>
+            <input type="text" class="form-control form-control-sm" id="numeroDocumento" name="numeroDocumento" required>
+            <div id="numeroDocumentoError" class="text-danger"></div> <!-- Error en tiempo real -->
+            
+        </div>
+        <div class="mb-3">
+            <label for="nombreCliente" class="form-label">Nombre completo</label>
+            <input type="text" class="form-control form-control-sm" id="nombreCliente" name="nombreCliente" required>
+            <div id="nombreClienteError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="telefonoCliente" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control form-control-sm" id="telefonoCliente" name="telefonoCliente" required>
+            <div id="telefonoClienteError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="direccionCliente" class="form-label">Dirección</label>
+            <input type="text" class="form-control form-control-sm" id="direccionCliente" name="direccionCliente" required>
+            <div id="direccionClienteError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="emailCliente" class="form-label">Email</label>
+            <input type="email" class="form-control form-control-sm" id="emailCliente" name="emailCliente" required>
+            <div id="emailClienteError" class="text-danger"></div> <!-- Error en tiempo real -->
+        </div>
+        <button type="submit" class="btn btn-primary form-control-sm">Guardar Cliente</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/clientes/Crear_cliente.js') }}"></script>
+
+
+{% endblock %}
+
+
+
+    
+
+    

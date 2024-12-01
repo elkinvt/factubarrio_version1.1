@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Crear Usuario</h2>
+    <form  id = 'crear-usuario-form' action="{{ url_for('usuarios_crear') }}" method="POST">
+        <div class="mb-3">
+            <label for="nombre">Nombre de usuario:</label>
+            <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+            <small>Por favor, ingresa solo tu primer nombre y primer apellido.</small>
+            <div class="text-danger" id="nombreError"></div>
+            
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control form-control-sm" id="email" name="email" required>
+            <div class="text-danger" id="emailError"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" class="form-control form-control-sm" id="contraseña" name="contraseña" required>
+            <div class="text-danger" id="contraseñaError"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="rol">Rol:</label>
+            <select id="rol" name="rol" class="form-control form-control-sm" required>
+                <option value="">Seleccione un rol</option>
+                <option value="administrador">administrador</option>
+                <option value="vendedor">Vendedor</option>
+            </select>
+            <div class="text-danger" id="contraseñaError"></div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary form-control-sm">Crear Usuario</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/usuarios/Crear_usuario.js') }}"></script>
+
+{% endblock %}
+
+
+    
+
+   

@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <!-- Mostrar la tabla de todos los productos -->
+    <div class="container mt-5">
+        <h3>Lista de Productos</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Categoría</th>
+                    <th>Unidad de Medida</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in productos %}
+                <tr>
+                    <td>{{ item ['producto'] ['idproductos'] }}</td> 
+                    <td>{{  item ['producto'] ['codigo'] }}</td>
+                    <td>{{ item ['producto'] ['nombre'] }}</td>
+                    <td>{{ item ['producto'] ['descripcion'] }}</td>
+                    <td>{{ item ['categoria'] ['nombre'] }}</td>  <!-- Mostrar el nombre de la categoría -->
+                    <td>{{ item ['unidad_medida'] ['unidad_medida'] }}</td>  <!-- Mostrar el nombre de la unidad de medida -->
+                    <td>${{ item ['producto'] ['precio_unitario_formateado'] }}</td>
+                    <td>{{ item ['producto'] ['cantidad_stock'] }}</td>
+                    <td>
+                        {% if item ['producto'] ['is_active'] %}
+                        Activo
+                        {% else %}
+                        Inactivo
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">No hay productos registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+
+   
+
+
+    

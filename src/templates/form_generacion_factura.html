@@ -1,0 +1,136 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Generar Factura</h2>
+    <form id="formFactura" method="POST" action="{{ url_for('generar_factura') }}">
+
+        <!-- Campo oculto para almacenar productos -->
+        <input type="hidden" id="productosFactura" name="productosFactura">
+
+        <!-- Campo oculto para el código del producto seleccionado -->
+        <input type="hidden" id="productoFacturaCodigo" name="productoFacturaCodigo">
+
+        <!-- Campo oculto para el monto pagado por el cliente -->
+        <input type="hidden" id="montoPagado" name="monto_pagado">
+
+        <!-- Buscar y seleccionar Cliente -->
+        <div class="mb-3">
+            <label for="buscarDocumento" class="form-label">Buscar Cliente por número de documento</label>
+            <input type="text" class="form-control" id="buscarDocumento" placeholder="Escribe el numero de documento del cliente" autocomplete="off">
+            <div id="listaSugerenciasClientes" class="list-group" style="position: absolute; z-index: 1000;"></div>
+            <!-- Campo oculto para almacenar el ID del cliente seleccionado -->
+            <input type="hidden" id="clienteId" name="clienteId">
+            <div id="clienteError" class="form-text text-danger"></div>
+        </div>
+
+        <!-- Campo para mostrar automáticamente el nombre del cliente -->
+        <div class="mb-3">
+            <label for="nombreCliente" class="form-label">Nombre del Cliente</label>
+            <input type="text" class="form-control" id="nombreCliente" placeholder="Nombre del cliente" readonly>
+        </div>
+
+        <!-- Campo para mostrar automáticamente el número de documento del cliente -->
+        <div class="mb-3">
+            <label for="numeroDocumentoCliente" class="form-label">Número de Documento</label>
+            <input type="text" class="form-control" id="numeroDocumentoCliente" placeholder="Número de documento del cliente" readonly>
+        </div>
+
+        <!-- Campo para mostrar automáticamente la dirección del cliente -->
+        <div class="mb-3">
+            <label for="direccionCliente" class="form-label">Dirección del Cliente</label>
+            <input type="text" class="form-control" id="direccionCliente" placeholder="Dirección del cliente" readonly>
+        </div>
+
+        <!-- Campo para mostrar automáticamente el teléfono del cliente -->
+        <div class="mb-3">
+            <label for="telefonoCliente" class="form-label">Teléfono del Cliente</label>
+            <input type="text" class="form-control" id="telefonoCliente" placeholder="Teléfono del cliente" readonly>
+        </div>
+        
+        <!-- Mostrar el nombre del vendedor asociado al usuario logueado -->
+        <div class="mb-3">
+            <label for="vendedorNombre" class="form-label">Vendedor</label>
+            <input type="text" class="form-control form-control-sm" id="vendedorNombre" name="vendedorNombre" value="{{ vendedor_actual.nombres_vendedor }}" readonly>
+            <div id="vendedorError" class="form-text text-danger"></div>
+        </div>
+
+
+        <!-- Campo de texto para buscar productos -->
+        <div class="mb-3">
+            <label for="buscarProducto" class="form-label">Buscar Producto</label>
+            <input type="text" class="form-control" id="buscarProducto" placeholder="Escribe el nombre del producto" autocomplete="off">
+            <div id="listaSugerenciasProducto" class="list-group" style="position: absolute; z-index: 1000;"></div>
+            <div id="productoError" class="form-text text-danger"></div>
+        </div>
+
+        <!-- Cantidad de Producto -->
+        <div class="mb-3">
+            <label for="cantidadFactura" class="form-label">Cantidad</label>
+            <input type="number" class="form-control form-control-sm" id="cantidadFactura" name="cantidadFactura" placeholder="Escribe la cantidad del producto" >
+            <div id="stockStatus"></div> <!-- Muestra el estado del stock en tiempo real -->
+            <div id="cantidadError" class="form-text text-danger"></div>
+        </div>
+        
+        
+        <!-- Campo para el descuento (opcional) -->
+        <div class="mb-3">
+            <label for="descuentoFactura" class="form-label">Descuento</label>
+            <input type="number" class="form-control form-control-sm" id="descuentoFactura" name="descuentoFactura" placeholder="Escribe el descuento (opcional)" step="0.01" min="0" value="0">
+            <div id="descuentoError" class="form-text text-danger"></div>
+        </div>
+
+
+        <!-- Agregar Producto -->
+        <button type="button" class="btn btn-primary form-control-sm" onclick="agregarProductoAFactura()">Agregar a Factura</button>
+
+        <!-- Detalles de la Factura -->
+        <div id="detallesFactura" class="mt-4"></div>
+
+        <!-- Tabla de Detalles -->
+        <div class="container mb-3">
+            <table class="table mt-5 form-control-sm">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="facturaBody"></tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Subtotal</th>
+                        <th id="facturaSubtotal"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Impuesto (19%)</th>
+                        <th id="facturaImpuesto"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Total con Impuesto</th>
+                        <th id="facturaTotalConImpuesto"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="d-flex justify-content-center mb-3">
+            <button type="submit" class="btn btn-success form-control-sm" style="margin-right: 20px;">Pagar Factura</button>
+            <button type="button" class="btn btn-danger form-control-sm" onclick="anularFactura()">Anular Factura</button>
+        </div>
+
+         <!-- Mensajes generales -->
+         <div id="facturaSuccess" class="text-success mt-3"></div>
+         <div id="facturaError" class="text-danger mt-3"></div>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/facturas/generar_factura.js') }}"></script>
+
+{% endblock %}
+
+   
+

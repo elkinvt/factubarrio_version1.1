@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    {% if not cliente %}
+        <h2>Buscar Cliente</h2>
+        <form action="/clientes_editar" method="GET">
+            <label for="buscarCedula" class="form-label">Número de Documento:</label>
+            <input type="text" placeholder="Ingrese número del documento para buscar" class="form-control form-control-sm"
+                name="numeroDocumento">
+
+            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar Cliente</button>
+        </form>
+    {% endif %}
+</div>
+
+{% if cliente %}
+<div class="container mt-5">
+    <h2>Editar Cliente</h2>
+    <form id="formEditarCliente" >
+        <!-- Incluye el ID del cliente como un campo oculto -->
+        <input type="hidden" id="clienteId" name="clienteId" value="{{ cliente['idclientes'] }}">
+
+        <div class="mb-3">
+            <label for="tipoDocumentoEditar" class="form-label">Tipo de Documento</label>
+            <input 
+                type="text" 
+                class="form-control form-control-sm" 
+                id="tipoDocumentoEditar" 
+                value="{{ cliente['tipo_documento'] }}" 
+                readonly>
+            <input type="hidden" name="tipoDocumento" value="{{ cliente['tipo_documento'] }}">
+            <div id="tipoDocumentoError" class="text-danger"></div>
+        </div>
+        
+
+        <div class="mb-3">
+            <label for="cedulaCliente" class="form-label">Número de Documento</label>
+            <input type="text" class="form-control form-control-sm" id="cedulaCliente" name="numeroDocumento"
+                value="{{ cliente['numero_documento'] }}" readonly>
+            <div id="numeroDocumentoError" class="text-danger"></div> <!-- Error en tiempo real -->
+        </div>
+
+        <div class="mb-3">
+            <label for="nombreCliente" class="form-label">Nombre</label>
+            <input type="text" class="form-control form-control-sm" id="nombreCliente" name="nombreCliente"
+                value="{{ cliente['nombres_cliente'] }}" required>
+                <div id="nombreClienteError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefonoCliente" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control form-control-sm" id="telefonoCliente" name="telefonoCliente"
+                value="{{ cliente['telefono'] }}">
+            <div id="telefonoClienteError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="direccionCliente" class="form-label">Dirección</label>
+            <input type="text" class="form-control form-control-sm" id="direccionCliente" name="direccionCliente"
+                value="{{ cliente['direccion'] }}" required>
+            <div id="direccionClienteError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="emailCliente" class="form-label">Email</label>
+            <input type="email" class="form-control form-control-sm" id="emailCliente" name="emailCliente"
+                value="{{ cliente['email'] }}" required>
+            <div id="emailClienteError" class="text-danger"></div> <!-- Error en tiempo real -->
+        </div>
+
+        <div class="mb-3">
+            <label for="estadoCliente" class="form-label">Estado del Cliente</label>
+            <input type="text" class="form-control form-control-sm" id="estadoCliente" name="estadoCliente"
+                value="{{ 'Activo' if cliente['is_active'] else 'Inactivo' }}" readonly>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary form-control-sm">Guardar Cambios</button>
+        </div>
+    </form>
+
+    <!-- Bloquear/Desbloquear Cliente -->
+    <form id="toggleEstadoClienteForm" class="mt-3">
+        <input type="hidden" name="idclientes" value="{{ cliente['idclientes'] }}">
+        <button type="submit" class="btn btn-warning mb-2"> 
+            {% if cliente['is_active'] %}
+                Desactivar cliente
+            {% else %}
+                Activar cliente
+            {% endif %}
+        </button>
+    </form>
+    <div id="toggleEstadoClienteMensaje" class="mt-2"></div>
+
+    <!-- Eliminar Cliente -->
+    <form id="eliminarClienteForm"  class="mt-2">
+        <input type="hidden" name="idclientes" value="{{ cliente['idclientes'] }}">
+        <button type="submit" class="btn btn-danger">Eliminar Cliente</button>
+    </form>
+    <div id="eliminarClienteMensaje" class="mt-2"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/clientes/Editar_cliente.js') }}"></script>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+    
+
+   

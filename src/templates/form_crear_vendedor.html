@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Registrar vendedor</h2>
+    <div id="mensajeErrorGeneral" class="text-danger"></div>
+    <form id="formCrearVendedor">
+    <div class="mb-3">
+        <label for="tipoDocumentoVendedor" class="form-label">Tipo de Documento:</label>
+        <select class="form-control form-control-sm" id="tipoDocumentoVendedor" name="tipoDocumento" required>
+            <option value="">Seleccione tipo de documento</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="TI">Tarjeta de Identidad</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="PA">Pasaporte</option>
+            <option value="NIT">NIT</option>
+        </select>
+        <div id="tipoDocumentoError" class="text-danger"></div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="numeroDocumentoVendedor" class="form-label">Número de Documento:</label>
+        <input type="text" class="form-control form-control-sm" id="numeroDocumentoVendedor" name="numeroDocumento" required>
+        <div id="numeroDocumentoError" class="text-danger"></div> <!-- Error en tiempo real -->
+    </div>
+
+    <div class="mb-3">
+        <label for="nombreVendedor" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control form-control-sm" id="nombreVendedor" name="nombreVendedor" required>
+        <div id="nombreVendedorError" class="text-danger"></div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="telefonoVendedor" class="form-label">Teléfono</label>
+        <input type="tel" class="form-control form-control-sm" id="telefonoVendedor" name="telefonoVendedor" required>
+        <div id="telefonoVendedorError" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="direccionVendedor" class="form-label">Dirección</label>
+        <input type="text" class="form-control form-control-sm" id="direccionVendedor" name="direccionVendedor" required>
+        <div id="direccionVendedorError" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="emailVendedor" class="form-label">Email</label>
+        <select name="emailVendedor" id="emailVendedor" class="form-control form-control-sm" required>
+            <option value="" disabled selected>Selecciona un email</option>
+            {% for usuario in usuarios %}
+            <option value="{{ usuario['email'] }}">{{ usuario['email'] }}</option>
+            {% endfor %}
+        </select>
+        <div id="emailVendedorError" class="text-danger"></div> <!-- Error en tiempo real -->
+    </div>
+
+    <div class="mb-3">
+        <label for="usuario" class="form-label">Usuario:</label>
+        <select class="form-control form-control-sm" id="usuario" name="usuario_id" required>
+            <option value="" disabled selected>Selecciona un usuario</option>
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id_usuario }}">{{ usuario['nombres_usuario'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary form-control-sm">Guardar vendedor</button>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='js/vendedores/Crear_vendedor.js') }}"></script>
+{% endblock %}
+
+    
+
+    

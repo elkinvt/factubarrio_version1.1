@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Registrar Producto</h2>
+    <div id="mensajeErrorGeneral" class="text-danger"></div>
+    <form id="formCrearProducto">
+        <div class="mb-3">
+            <label for="codigoProducto" class="form-label">Código</label>
+            <input type="text" class="form-control form-control-sm" id="codigoProducto" name="codigoProducto" required>
+            <div id="codigoProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="nombreProducto" class="form-label">Nombre</label>
+            <input type="text" class="form-control form-control-sm" id="nombreProducto" name="nombreProducto" required>
+            <div id="nombreProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="descripcionProducto" class="form-label">Descripción</label>
+            <textarea class="form-control form-control-sm" id="descripcionProducto" name="descripcionProducto" rows="3" required></textarea>
+            <div id="descripcionProductoError" class="text-danger"></div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="categoriaProducto" class="form-label">Categoría</label>
+            <select class="form-select form-control-sm" id="categoriaProducto" name="categoriaProducto" required>
+                <option value="">Seleccione una categoría</option>
+                {% if categorias %}
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.idcategoria }}">{{ categoria.nombre }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option disabled>No hay categorías disponibles</option>
+                {% endif %}
+            </select>
+            <div id="categoriaProductoError" class="text-danger"></div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="precioProducto" class="form-label">Precio</label>
+            <input type="number" class="form-control form-control-sm" id="precioProducto" name="precioProducto" required step="0.01">
+            <div id="precioProductoError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="unidadMedidaProducto" class="form-label">Unidad de Medida</label>
+            <select class="form-select form-control-sm" id="unidadMedidaProducto" name="unidadMedidaProducto" required>
+                <option value="">Seleccione una unidad de medida</option>
+                {% for unidad in unidades_padre %}
+                    <optgroup label="{{ unidad.unidad_medida }}">
+                        <option value="{{ unidad.idunidad_medida }}">{{ unidad.unidad_medida }}</option>
+                        {% for subunidad in subunidades %}
+                            {% if subunidad.unidad_padre_id == unidad.idunidad_medida %}
+                                <option value="{{ subunidad.idunidad_medida }}">- {{ subunidad.unidad_medida }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </optgroup>
+                {% endfor %}
+            </select>
+            <div id="unidadMedidaProductoError" class="text-danger"></div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="presentacionProducto" class="form-label">Presentación</label>
+            <input type="text" class="form-control form-control-sm" id="presentacionProducto" name="presentacionProducto" required>
+            <div id="presentacionProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="cantidadStockProducto" class="form-label">Cantidad en Stock</label>
+            <input type="number" class="form-control form-control-sm" id="cantidadStockProducto" name="cantidadStockProducto" required>
+            <div id="cantidadStockProductoError" class="text-danger"></div>
+        </div>
+        <button type="submit" class="btn btn-primary form-control-sm">Guardar Producto</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/productos/Crear_producto.js') }}"></script>
+
+{% endblock %}
+
+    
+
+
+    

@@ -1,0 +1,153 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    {% if not productos and not producto %}
+    <h2>Buscar Producto</h2>
+    <form id="formBuscarProducto" action="{{ url_for('productos_editar') }}" method="GET">
+        <div class="mb-3">
+            <label for="terminoBusqueda" class="form-label">Ingrese el Código o Nombre del Producto</label>
+            <input type="text" class="form-control" id="terminoBusqueda" name="termino" required>
+        </div>
+        <button type="submit" class="btn btn-primary form-control-sm">Buscar Producto</button>
+    </form>
+    {% endif %}
+</div>
+
+<!-- Mostrar la lista de productos si hay resultados -->
+{% if productos and not producto %}
+<div class="container mt-5">
+    <h3>Resultados de la búsqueda</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.idproductos }}</td>
+                <td>{{ producto.codigo }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.precio_unitario }}</td>
+                <td>{{ producto.cantidad_stock }}</td>
+                <td>
+                    <a href="{{ url_for('mostrar_formulario_editar_producto', id=producto.idproductos) }}" class="btn btn-sm btn-primary">Seleccionar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No se encontraron productos</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+<!-- Formulario de edición del producto (vacío o con datos del producto seleccionado) -->
+{% if producto %}
+<div class="container mt-5">
+    <h2>Editar Producto</h2>
+    <div id="mensajeErrorGeneral" class="text-danger"></div>
+    <form id="formEditarProducto" action="{{ url_for('actualizar_producto', id=producto['idproductos']) }}" method="POST">
+        <div class="mb-3">
+            <label for="codigoProducto" class="form-label">Código</label>
+            <input type="text" class="form-control" id="codigoProducto" name="codigo" value="{{ producto['codigo'] if producto else '' }}" required>
+            <div id="codigoProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="nombreProducto" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreProducto" name="nombre" value="{{ producto['nombre'] if producto else '' }}" required>
+            <div id="nombreProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="descripcionProducto" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcionProducto" name="descripcion" required>{{ producto['descripcion'] if producto else '' }}</textarea>
+            <div id="descripcionProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="categoriaProducto" class="form-label">Categoría</label>
+            <select class="form-select" id="categoriaProducto" name="categoria_id" required>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria['idcategoria'] }}" {% if producto and producto.categoria_idcategoria == categoria.idcategoria %}selected{% endif %}>{{ categoria.nombre }}</option>
+                {% endfor %}
+            </select>
+            <div id="categoriaProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="precioProducto" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precioProducto" name="precio" value="{{ producto['precio_unitario'] if producto else '' }}" required>
+            <div id="precioProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="unidadMedidaProducto" class="form-label">Unidad de Medida</label>
+            <select class="form-select" id="unidadMedidaProducto" name="unidadMedidaProducto" required>
+                {% for unidad in unidades_padre %}
+                    <optgroup label="{{ unidad.unidad_medida }}">
+                        <!-- Verificamos si la unidad padre está seleccionada -->
+                        <option value="{{ unidad['idunidad_medida'] }}" {% if producto and producto.unidad_medida_idunidad_medida == unidad.idunidad_medida %}selected{% endif %}>
+                            {{ unidad.unidad_medida }}
+                        </option>
+                        <!-- Verificamos si alguna subunidad está seleccionada -->
+                        {% for subunidad in subunidades %}
+                            {% if subunidad.unidad_padre_id == unidad.idunidad_medida %}
+                                <option value="{{ subunidad['idunidad_medida'] }}" {% if producto and producto.unidad_medida_idunidad_medida == subunidad.idunidad_medida %}selected{% endif %}>
+                                    - {{ subunidad.unidad_medida }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </optgroup>
+                {% endfor %}
+            </select>
+            <div id="unidadMedidaProductoError" class="text-danger"></div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="presentacionProducto" class="form-label">Presentación</label>
+            <input type="text" class="form-control" id="presentacionProducto" name="presentacion" value="{{ producto['presentacion'] if producto else '' }}" required>
+            <div id="presentacionProductoError" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="cantidadStockProducto" class="form-label">Cantidad en Stock</label>
+            <input type="number" class="form-control" id="cantidadStockProducto" name="cantidad_stock" value="{{ producto['cantidad_stock'] if producto else '' }}" required>
+            <div id="cantidadStockProductoError" class="text-danger"></div>
+        </div>
+        <button type="submit" class="btn btn-primary form-control-sm">Guardar Cambios</button>
+    </form>
+
+    <!-- Activar/Desactivar Producto -->
+    <form id="toggleEstadoProductoForm" class="mt-3">
+        <input type="hidden" name="idproducto" value="{{ producto.idproductos }}">
+        <button type="submit" class="btn btn-warning mb-2">
+            {% if producto['is_active'] %}
+                Desactivar Producto
+            {% else %}
+                Activar Producto
+            {% endif %}
+        </button>
+    </form>
+    <div id="toggleEstadoProductoMensaje" class="mt-2"></div>
+
+    <!-- Eliminar Producto -->
+    <form id="eliminarProductoForm"  class="mt-2">
+        <input type="hidden" name="idProducto" value="{{ producto['idproductos'] }}">
+        <button type="submit" class="btn btn-danger">Eliminar Producto</button>
+    </form>
+    <div id="eliminarProductoMensaje" class="mt-2"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/productos/Editar_producto.js') }}"></script>
+
+{% endif %}
+
+{% endblock %}
