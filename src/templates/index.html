@@ -1,7 +1,10 @@
 {% extends 'layout.html' %}
 {% block content %}
     <div class="bienvenido">
-        ¡¡¡¡¡BIENVENIDO!!!!!
+        <h1>Bienvenido, {{ current_user.nombres_usuario }}</h1>
+        <div>{{ current_user.rol }}</div>
+
+        
     </div>
 {% endblock %}
     
