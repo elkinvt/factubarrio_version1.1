@@ -19,6 +19,7 @@ class LoginController(FlaskController):
                 login_user(usuario_valido)
                 # Guardar el ID del usuario en la sesión
                 session['usuario_id'] = usuario_valido.id_usuario  # Asegúrate de que `id_usuario` es el campo correcto
+                session['usuario_rol'] = usuario_valido.rol 
                 return redirect(url_for('Index'))
             else:
                 flash('Nombre de usuario o contraseña incorrectos',  'danger')

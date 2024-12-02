@@ -150,11 +150,14 @@
                 aria-expanded="false">Clientes</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownClientes">
                 <li><a class="dropdown-item" href="{{ url_for('clientes_ver') }}">Ver Clientes</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('clientes_crear') }}">Crear Cliente</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('clientes_editar') }}">Editar Cliente</a></li>
-
+                {% if current_user.rol == 'administrador' %}
+                    <li><a class="dropdown-item" href="{{ url_for('clientes_crear') }}">Crear Cliente</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('clientes_editar') }}">Editar Cliente</a></li>
+                {% endif %}
+                
             </ul>
         </li>
+        {% if current_user.rol == 'administrador' %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdownVendedores" data-bs-toggle="dropdown" href="#" role="button"
                 aria-expanded="false">Vendedores</a>
@@ -164,13 +167,17 @@
                 <li><a class="dropdown-item" href="{{ url_for('vendedores_editar') }}">Editar Vendedor</a></li>
             </ul>
         </li>
+        {% endif %}
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdownProductos" data-bs-toggle="dropdown" href="#" role="button"
                 aria-expanded="false">Productos</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownProductos">
                 <li><a class="dropdown-item" href="{{ url_for('productos_ver') }}">Ver Productos</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('productos_crear') }}">Crear Producto</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('productos_editar') }}">Editar producto</a></li>
+                {% if current_user.rol == 'administrador' %}
+                    <li><a class="dropdown-item" href="{{ url_for('productos_crear') }}">Crear Producto</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('productos_editar') }}">Editar producto</a></li>
+                {% endif %}
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -178,9 +185,12 @@
                 aria-expanded="false">Facturas</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownFacturas">
                 <li><a class="dropdown-item" href="{{ url_for('ver_factura') }}">Ver Facturas</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('generar_factura') }}">Generar Factura</a></li>
+                {% if current_user.rol == 'vendedor' %}
+                    <li><a class="dropdown-item" href="{{ url_for('generar_factura') }}">Generar Factura</a></li>
+                {% endif %}
             </ul>
         </li>
+        {% if current_user.rol == 'administrador' %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdownFacturas" data-bs-toggle="dropdown" href="#" role="button"
                 aria-expanded="false">Usuario</a>
@@ -190,6 +200,7 @@
                 <li><a class="dropdown-item" href="{{ url_for('usuarios_editar') }}">Editar usuario</a></li>
             </ul>
         </li>
+        {% endif %}
     </ul>
     
     <main>
