@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import redirect,url_for
 from flask_controller import FlaskController
 
 from src.app import app 
@@ -6,4 +6,4 @@ from src.app import app
 class Cerra_sesion_Controller(FlaskController):
     @app.route('/cerrar_sesion')
     def cerrar_sesion():
-        return render_template('login.html',titulo_pagina = 'Login')
+        return redirect(url_for('login'))

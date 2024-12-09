@@ -1,0 +1,103 @@
+body {
+    background-image: url("../LOGO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+}
+
+.cerrar-sesion {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    z-index: 1000;
+}
+
+footer {
+    margin-top: auto;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: white;
+    padding: 5px 0;
+    text-align: right;
+}
+
+.mx-auto {
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -20px;
+}
+
+.form-control-sm {
+    width: 100%;
+    max-width: 300px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bienvenido {
+    font-size: 100px;
+    /* Tamaño grande para pantallas grandes */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 310px;
+    /* Margen para centrar en pantallas grandes */
+}
+
+/* Ajustes para tablets */
+@media (max-width: 768px) {
+    .bienvenido {
+        font-size: 50px;
+        /* Tamaño de fuente más pequeño */
+        margin-top: 150px;
+        /* Menor margen superior */
+    }
+}
+
+/* Ajustes para teléfonos móviles */
+@media (max-width: 480px) {
+    .bienvenido {
+        font-size: 30px;
+        /* Tamaño de fuente aún más pequeño */
+        margin-top: 50px;
+        /* Menor margen superior */
+    }
+}
+
+.factubarrio {
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -20px;
+}
+
+@media (max-width: 768px) {
+    .factubarrio {
+        font-size: 50px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .factubarrio {
+        font-size: 30px;
+        margin-top: 20px;
+    }
+}
