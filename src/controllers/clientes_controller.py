@@ -110,7 +110,6 @@ class Clientes_Controller(FlaskController):
         numero_documento = request.args.get('numeroDocumento')
 
         if  not numero_documento:
-            flash('Por favor, ingrese número de Documento.', 'warning')
             return render_template('form_editar_cliente.html', cliente=None, titulo_pagina="Editar Cliente")
 
         try:

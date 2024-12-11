@@ -117,7 +117,6 @@ class Vendedores_Controller(FlaskController):
 
         # Verificar si se ingresan ambos campos
         if not  numero_documento:
-            flash('Por favor, ingrese número de Documento.', 'warning')
             return render_template('form_editar_vendedor.html', vendedor=None, titulo_pagina="Editar Vendedor")
 
         try:

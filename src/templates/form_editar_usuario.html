@@ -5,11 +5,10 @@
     {% if not usuario %}
         <h2>Buscar usuario</h2>
         <form action="/usuarios_editar" method="GET">
-            <label for="buscarusuario" class="form-label">nombre usuario:</label>
             <input type="text" placeholder="Ingrese nombre de usuario para buscar" class="form-control form-control-sm"
                 name="nombre">
 
-            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar usuario</button>
+            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
         </form>
     {% endif %}
 </div>

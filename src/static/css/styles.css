@@ -10,6 +10,33 @@ body {
     padding-top: 5px;
 }
 
+/*body {
+    background-image: url("../LOGO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0; /* Asegúrate de que no haya márgenes adicionales 
+    display: flex;
+    justify-content: center; /* Centra horizontalmente 
+    align-items: center; /* Centra verticalmente 
+}*/
+
+
+/*.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}*/
+
 .cerrar-sesion {
     position: fixed;
     top: 5px;
@@ -34,22 +61,16 @@ footer {
 }
 
 .form-control-sm {
-    width: 125%;
+    width: 170%;
     max-width: 300px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 600px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+h2 {
+    color: #000; /* Texto negro */
+    font-size: 1.5rem; /* Tamaño más simple */
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+
 }
 
 .bienvenido {

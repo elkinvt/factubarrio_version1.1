@@ -5,11 +5,9 @@
     {% if not cliente %}
     <h2>Buscar Cliente</h2>
     <form action="/clientes_editar" method="GET">
-        <label for="buscarCedula" class="form-label">Número de Documento:</label>
-        <input type="text" placeholder="Ingrese número del documento para buscar" class="form-control form-control-sm"
+        <input type="text" placeholder="Ingrese el número de Documento" class="form-control form-control-sm"
             name="numeroDocumento">
-
-        <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar Cliente</button>
+        <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
     </form>
     {% endif %}
 </div>

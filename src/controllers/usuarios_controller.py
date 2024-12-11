@@ -86,7 +86,6 @@ class Usuarios_Controller(FlaskController):
         nombre_usuario = request.args.get('nombre')  # Obtener el nombre del usuario desde los parámetros de la URL
 
         if not nombre_usuario:
-            flash('Por favor, proporcione el nombre del usuario.', 'warning')
             return render_template('form_editar_usuario.html', usuario=None, titulo_pagina="Editar Usuario")
 
         try:
@@ -113,11 +112,11 @@ class Usuarios_Controller(FlaskController):
     @role_required(['administrador'])
     def actualizar_usuarios():
 
-        usuario_id = request.form.get['usuarioId']
-        nombre_usuario = request.form.get['nombreUsuario'].title()
-        email = request.form.get['emailUsuario']
-        rol = request.form.get['rolUsuario']
-        is_active = request.form.get['estadousuario'].lower() == 'activo'
+        usuario_id = request.form.get('usuarioId')
+        nombre_usuario = request.form.get('nombreUsuario').title()
+        email = request.form.get('emailUsuario')
+        rol = request.form.get('rolUsuario')
+        is_active = request.form.get('estadousuario').lower() == 'activo'
         nueva_contraseña = request.form.get('nuevaContraseña')
         confirmar_contraseña = request.form.get('confirmarContraseña')
 

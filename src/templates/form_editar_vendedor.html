@@ -4,10 +4,9 @@
     {% if not vendedor %}
         <h2>Buscar Vendedor</h2>
         <form action="/vendedores_editar" method="GET">
-            <label for="buscardocumento" class="form-label">Número de Documento:</label>
-            <input type="text" placeholder="Ingrese número del documento para buscar" class="form-control form-control-sm" name="numeroDocumento">
+            <input type="text" placeholder="Ingrese el número de Documento"class="form-control form-control-sm" name="numeroDocumento">
 
-            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar Vendedor</button>
+            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
         </form>
     {% endif %}
 </div>

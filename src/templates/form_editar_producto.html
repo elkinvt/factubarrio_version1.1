@@ -6,8 +6,7 @@
     <h2>Buscar Producto</h2>
     <form id="formBuscarProducto" action="{{ url_for('productos_editar') }}" method="GET">
         <div class="mb-3">
-            <label for="terminoBusqueda" class="form-label">Ingrese el Código o Nombre del Producto</label>
-            <input type="text" class="form-control" id="terminoBusqueda" name="termino" required>
+            <input type="text" class="form-control form-control-sm" id="terminoBusqueda" name="termino" placeholder="Ingrese el Código o Nombre del Producto" required>
         </div>
         <button type="submit" class="btn btn-primary form-control-sm">Buscar Producto</button>
     </form>
