@@ -5,8 +5,6 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     padding-top: 5px;
 }
 
@@ -36,6 +34,43 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }*/
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px 30px 40px; /* Significa: arriba 10px, derecha 20px, abajo 30px, izquierda 40px */
+}
+h2 {
+    color: #000; /* Texto negro */
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+
+}
+.form {
+    background: white;
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra todos los elementos horizontalmente */
+    padding: 20px;
+    margin: 0 auto;
+    width: 30%;
+    margin-left: 250px;
+}
+
+.form .mb-3 {
+    width: 100%; /* Asegura que todos los campos tengan el mismo ancho */
+    max-width: 300px;
+}
+
+.form .btn {
+    display: block; /* Asegura que se comporte como un bloque */
+    width: 100%; /* Ajusta el ancho al contenedor */
+    margin-top: 10px; /* Opcional: separa el botón de los campos */
+}
 
 .cerrar-sesion {
     position: fixed;
@@ -61,16 +96,8 @@ footer {
 }
 
 .form-control-sm {
-    width: 170%;
+    width: 130%;
     max-width: 300px;
-}
-
-h2 {
-    color: #000; /* Texto negro */
-    font-size: 1.5rem; /* Tamaño más simple */
-    margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
-
 }
 
 .bienvenido {

@@ -108,14 +108,21 @@
         </div>
         {% endif %}
         {% endwith %}
+        <div class="container mt-5">
+            {% block content %}
+        
+            {% endblock %}
+            {% if current_user.is_authenticated %}
+                <button class="btn btn-danger" onclick="cerrarSesion()">Cerrar Sesión</button>
+            {% endif %}
 
-        {% block content %}
+        </div>
 
-        {% endblock %}
+       
     </main>
 
     <footer>
-        <button class="btn btn-danger" onclick="cerrarSesion()">Cerrar Sesión</button>
+        <!--<button class="btn btn-danger" onclick="cerrarSesion()">Cerrar Sesión</button>-->
     </footer>
    
     <script src="{{ url_for('static', filename='js/session.js') }}"></script>
