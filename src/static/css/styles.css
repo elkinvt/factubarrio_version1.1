@@ -8,40 +8,6 @@ body {
     padding-top: 5px;
 }
 
-/*body {
-    background-image: url("../LOGO.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    margin: 0; /* Asegúrate de que no haya márgenes adicionales 
-    display: flex;
-    justify-content: center; /* Centra horizontalmente 
-    align-items: center; /* Centra verticalmente 
-}*/
-
-
-/*.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1000px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}*/
-.container {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px 30px 40px; /* Significa: arriba 10px, derecha 20px, abajo 30px, izquierda 40px */
-}
 h2 {
     color: #000; /* Texto negro */
     font-size: 1.8rem;
@@ -50,15 +16,44 @@ h2 {
     text-align: left;
 
 }
-.form {
-    background: white;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px 30px 40px; /* Significa: arriba 10px, derecha 20px, abajo 30px, izquierda 40px */
+    margin: 10px auto;
+    width: 90%; /* Ajusta el ancho de la caja */
+    max-width: 1200px;
+    min-height: 700px;
+}
+
+.form, .form-e, .form-el {
+    background-color: rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column; /* Coloca los elementos en columna */
     align-items: center; /* Centra todos los elementos horizontalmente */
     padding: 20px;
-    margin: 0 auto;
+    margin: 10px auto;
     width: 30%;
+    border-radius: 50px;
+}
+
+.form{
     margin-left: 250px;
+    margin-top: -50px;
+
+}
+.form-e{
+    margin-right: 150px;
+    margin-top: -500px;
+}
+
+.form-el{
+    margin-right: 150px;
+    margin-top: 100px;
 }
 
 .form .mb-3 {
@@ -71,12 +66,24 @@ h2 {
     width: 100%; /* Ajusta el ancho al contenedor */
     margin-top: 10px; /* Opcional: separa el botón de los campos */
 }
-
 .cerrar-sesion {
     position: fixed;
     top: 5px;
     right: 10px;
     z-index: 1000;
+}
+
+.session {
+    width: auto; /* Esto ajustará el botón al tamaño de su contenido */
+    margin: 0 auto; /* Esto lo centrará dentro del contenedor */
+    display: block; /* Asegura que el botón se comporte como un bloque */
+    margin-top: 20px;
+    margin-right: 210px;
+}
+
+.form-control-sm {
+    width: 130%;
+    max-width: 300px;
 }
 
 footer {
@@ -93,11 +100,6 @@ footer {
     font-weight: bold;
     text-align: center;
     margin-top: -20px;
-}
-
-.form-control-sm {
-    width: 130%;
-    max-width: 300px;
 }
 
 .bienvenido {
