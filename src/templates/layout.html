@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <div class="factubarrio">
         factubarrio
     </div>
@@ -113,7 +113,9 @@
         
             {% endblock %}
             {% if current_user.is_authenticated %}
-                <button class="btn btn-danger session" onclick="cerrarSesion()">Cerrar Sesión</button>
+            <form class="form-session" action="{{ url_for('cerrar_sesion') }}" method="get">
+                <button type="submit" class="btn btn-danger btn-session ">Cerrar Sesión</button>
+            </form>
             {% endif %}
 
         </div>

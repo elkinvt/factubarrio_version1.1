@@ -1,9 +1,11 @@
 {% extends 'layout.html' %}
+
+{% block body_class %}pagina-crear{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2>Registrar vendedor</h2>
+    <h2 class="title">Registrar vendedor</h2>
     <div id="mensajeErrorGeneral" class="text-danger"></div>
-    <form id="formCrearVendedor">
+    <form class="form" id="formCrearVendedor">
     <div class="mb-3">
         <label for="tipoDocumentoVendedor" class="form-label">Tipo de Documento:</label>
         <select class="form-control form-control-sm" id="tipoDocumentoVendedor" name="tipoDocumento" required>
@@ -62,9 +64,9 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-primary form-control-sm">Guardar vendedor</button>
+    <button type="submit" class="btn btn-primary btn-block">Guardar</button>
     </form>
-</div>
+
 <script src="{{ url_for('static', filename='js/vendedores/Crear_vendedor.js') }}"></script>
 {% endblock %}
 

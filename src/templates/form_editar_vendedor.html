@@ -1,20 +1,19 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="container mt-5">
+
     {% if not vendedor %}
-        <h2>Buscar Vendedor</h2>
-        <form action="/vendedores_editar" method="GET">
+        <h2 class="title">Buscar Vendedor</h2>
+        <form class="form" action="/vendedores_editar" method="GET">
             <input type="text" placeholder="Ingrese el número de Documento"class="form-control form-control-sm" name="numeroDocumento">
 
             <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
         </form>
     {% endif %}
-</div>
+
 
 {% if vendedor %}
-<div class="container mt-5">
-    <h2>Editar Vendedor</h2>
-    <form id="formEditarVendedor">
+    <h2 class="title">Editar Vendedor</h2>
+    <form class="form" id="formEditarVendedor">
         <input type="hidden" name="vendedorId" value="{{ vendedor.idvendedores }}">
 
         <div class="mb-3">
@@ -60,19 +59,17 @@
             <div id="emailVendedorError" class="text-danger"></div> <!-- Error en tiempo real -->
         </div>
 
-        <button type="submit" class="btn btn-primary form-control-sm">Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
        
     </form>
 
     <!-- Eliminar Vendedor -->
-    <form id="eliminarVendedorForm"  class="mt-2">
+    <form id="eliminarVendedorForm"  class="form-elv">
         <input type="hidden" name="idvendedores" value="{{ vendedor['idvendedores']  }}">
         <button type="submit" class="btn btn-danger form-control-sm">Eliminar Vendedor</button>
-    
     </form>
     <div id="eliminarvendedorMensaje" class="mt-2"></div>
 
-</div>
 
 <script src="{{ url_for('static', filename='js/vendedores/Editar_vendedor.js') }}"></script>
 

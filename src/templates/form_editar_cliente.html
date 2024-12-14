@@ -2,7 +2,7 @@
 {% block content %}
 
 {% if not cliente %}
-<h2 class="h2">Buscar Cliente</h2>
+<h2 class="title">Buscar Cliente</h2>
 <form class="form" action="/clientes_editar" method="GET">
     <input type="text" placeholder="Ingrese el número de Documento" class="form-control form-control-sm"
         name="numeroDocumento">
@@ -11,7 +11,7 @@
 {% endif %}
 
 {% if cliente %}
-<h2 class="h2">Editar Cliente</h2>
+<h2 class="title">Editar Cliente</h2>
 <form class="form" id="formEditarCliente">
     <!-- Incluye el ID del cliente como un campo oculto -->
     <input type="hidden" id="clienteId" name="clienteId" value="{{ cliente['idclientes'] }}">
