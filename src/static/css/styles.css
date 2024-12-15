@@ -30,7 +30,7 @@ body {
     min-height: 700px;
 }
 
-.form, .form-e, .form-el, .form-elv, .form-session{
+.form, .form-e, .form-el, .form-elvd, .form-session{
     background-color: rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column; /* Coloca los elementos en columna */
@@ -46,7 +46,7 @@ body {
     margin-top: -50px;
 
 }
-.form-e, .form-el, .form-elv, .form-session{
+.form-e, .form-el, .form-elvd, .form-session{
     margin-right: 150px;
    
 }
@@ -57,7 +57,7 @@ body {
     margin-top: 100px;
 }
 
-.form-elv{
+.form-elvd{
     margin-top: -350px;
 }
 
@@ -80,6 +80,25 @@ body {
     margin-right: 100px;
     margin-top: -300px;
 }
+
+.pagina-crear-producto .form-session{
+    margin-right: 100px;
+    margin-top: -450px;
+}
+
+.pagina-crear-producto .container {
+    min-height: 800px;
+}
+
+.pagina-editar-producto .container {
+    min-height: 850px;
+}
+
+.pagina-editar-producto .form-e{
+    margin-top: -600px;
+}
+
+
 .cerrar-sesion {
     position: fixed;
     top: 5px;

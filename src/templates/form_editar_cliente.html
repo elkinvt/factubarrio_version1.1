@@ -6,7 +6,7 @@
 <form class="form" action="/clientes_editar" method="GET">
     <input type="text" placeholder="Ingrese el número de Documento" class="form-control form-control-sm"
         name="numeroDocumento">
-    <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
+    <button type="submit" class="btn btn-primary mt-2 btn-block">Buscar</button>
 </form>
 {% endif %}
 
@@ -69,28 +69,26 @@
     <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
 </form>
 
-    <!-- Bloquear/Desbloquear Cliente -->
-    <form id="toggleEstadoClienteForm" class="form-e" >
-        <input type="hidden" name="idclientes" value="{{ cliente['idclientes'] }}">
-        <button type="submit" class="btn btn-warning  btn-block">
-            {% if cliente['is_active'] %}
-            Desactivar cliente
-            {% else %}
-            Activar cliente
-            {% endif %}
-        </button>
-        <div id="toggleEstadoClienteMensaje" class="mt-2"></div>
-    </form>
-    
+<!-- Bloquear/Desbloquear Cliente -->
+<form id="toggleEstadoClienteForm" class="form-e">
+    <input type="hidden" name="idclientes" value="{{ cliente['idclientes'] }}">
+    <button type="submit" class="btn btn-warning  btn-block">
+        {% if cliente['is_active'] %}
+        Desactivar cliente
+        {% else %}
+        Activar cliente
+        {% endif %}
+    </button>
+    <div id="toggleEstadoClienteMensaje" class="mt-2"></div>
+</form>
 
-    <!-- Eliminar Cliente -->
-    <form class="form-el" id="eliminarClienteForm" >
-        <input type="hidden" name="idclientes" value="{{ cliente['idclientes'] }}">
-        <button type="submit" class="btn btn-danger btn-block">Eliminar Cliente</button>
-    </form>
+
+<!-- Eliminar Cliente -->
+<form class="form-el" id="eliminarClienteForm">
+    <input type="hidden" name="idclientes" value="{{ cliente['idclientes'] }}">
+    <button type="submit" class="btn btn-danger btn-block">Eliminar Cliente</button>
     <div id="eliminarClienteMensaje" class="mt-2"></div>
-
-
+</form>
 
 <script src="{{ url_for('static', filename='js/clientes/Editar_cliente.js') }}"></script>
 

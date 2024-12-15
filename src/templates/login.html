@@ -24,29 +24,31 @@
         <form class="form" action="{{ url_for('login') }}" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Usuario:</label>
-                <input type="text" class="form-control form-control-sm" id="nombre_usuario"  name="nombre_usuario"  placeholder="Nombre de Usuario" required>
+                <input type="text" class="form-control form-control-sm" id="nombre_usuario" name="nombre_usuario"
+                    placeholder="Nombre de Usuario" required>
             </div>
             <div class="mb-3">
-                <label for="contraseña"  class="form-label">Contraseña:</label>
-                <input type="password" class="form-control form-control-sm" id="contraseña" name="contraseña" placeholder="Contraseña" required>
+                <label for="contraseña" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control form-control-sm" id="contraseña" name="contraseña"
+                    placeholder="Contraseña" required>
             </div>
             <button type="submit" class="btn btn-primary form-control-sm">Ingresar</button>
         </form>
-        
-   
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
         <div class="alert alert-dismissible fade show">
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
             {% endfor %}
         </div>
-    {% endif %}
-{% endwith %}
-</div>
+        {% endif %}
+        {% endwith %}
+    </div>
 
 </body>
 

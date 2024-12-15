@@ -3,9 +3,9 @@
 {% block body_class %}pagina-crear{% endblock %}
 
 {% block content %}
-    <h2 class="title">Registrar vendedor</h2>
-    <div id="mensajeErrorGeneral" class="text-danger"></div>
-    <form class="form" id="formCrearVendedor">
+<h2 class="title">Registrar vendedor</h2>
+<div id="mensajeErrorGeneral" class="text-danger"></div>
+<form class="form" id="formCrearVendedor">
     <div class="mb-3">
         <label for="tipoDocumentoVendedor" class="form-label">Tipo de Documento:</label>
         <select class="form-control form-control-sm" id="tipoDocumentoVendedor" name="tipoDocumento" required>
@@ -18,10 +18,11 @@
         </select>
         <div id="tipoDocumentoError" class="text-danger"></div>
     </div>
-    
+
     <div class="mb-3">
         <label for="numeroDocumentoVendedor" class="form-label">Número de Documento:</label>
-        <input type="text" class="form-control form-control-sm" id="numeroDocumentoVendedor" name="numeroDocumento" required>
+        <input type="text" class="form-control form-control-sm" id="numeroDocumentoVendedor" name="numeroDocumento"
+            required>
         <div id="numeroDocumentoError" class="text-danger"></div> <!-- Error en tiempo real -->
     </div>
 
@@ -30,7 +31,7 @@
         <input type="text" class="form-control form-control-sm" id="nombreVendedor" name="nombreVendedor" required>
         <div id="nombreVendedorError" class="text-danger"></div>
     </div>
-    
+
     <div class="mb-3">
         <label for="telefonoVendedor" class="form-label">Teléfono</label>
         <input type="tel" class="form-control form-control-sm" id="telefonoVendedor" name="telefonoVendedor" required>
@@ -39,7 +40,8 @@
 
     <div class="mb-3">
         <label for="direccionVendedor" class="form-label">Dirección</label>
-        <input type="text" class="form-control form-control-sm" id="direccionVendedor" name="direccionVendedor" required>
+        <input type="text" class="form-control form-control-sm" id="direccionVendedor" name="direccionVendedor"
+            required>
         <div id="direccionVendedorError" class="text-danger"></div>
     </div>
 
@@ -59,17 +61,13 @@
         <select class="form-control form-control-sm" id="usuario" name="usuario_id" required>
             <option value="" disabled selected>Selecciona un usuario</option>
             {% for usuario in usuarios %}
-                <option value="{{ usuario.id_usuario }}">{{ usuario['nombres_usuario'] }}</option>
+            <option value="{{ usuario.id_usuario }}">{{ usuario['nombres_usuario'] }}</option>
             {% endfor %}
         </select>
     </div>
 
     <button type="submit" class="btn btn-primary btn-block">Guardar</button>
-    </form>
+</form>
 
 <script src="{{ url_for('static', filename='js/vendedores/Crear_vendedor.js') }}"></script>
 {% endblock %}
-
-    
-
-    

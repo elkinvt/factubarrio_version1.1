@@ -1,74 +1,75 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-    {% if not vendedor %}
-        <h2 class="title">Buscar Vendedor</h2>
-        <form class="form" action="/vendedores_editar" method="GET">
-            <input type="text" placeholder="Ingrese el número de Documento"class="form-control form-control-sm" name="numeroDocumento">
+{% if not vendedor %}
+<h2 class="title">Buscar Vendedor</h2>
+<form class="form" action="/vendedores_editar" method="GET">
+    <input type="text" placeholder="Ingrese el número de Documento" class="form-control form-control-sm"
+        name="numeroDocumento">
 
-            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
-        </form>
-    {% endif %}
+    <button type="submit" class="btn btn-primary mt-2 btn-block">Buscar</button>
+</form>
+{% endif %}
 
 
 {% if vendedor %}
-    <h2 class="title">Editar Vendedor</h2>
-    <form class="form" id="formEditarVendedor">
-        <input type="hidden" name="vendedorId" value="{{ vendedor.idvendedores }}">
+<h2 class="title">Editar Vendedor</h2>
+<form class="form" id="formEditarVendedor">
+    <input type="hidden" name="vendedorId" value="{{ vendedor.idvendedores }}">
 
-        <div class="mb-3">
-            <label for="tipoDocumentoEditar" class="form-label">Tipo de Documento</label>
-            <input 
-            type="text" 
-            class="form-control form-control-sm" 
-            id="tipoDocumentoEditar" 
-            value="{{ vendedor.tipo_documento }}" 
+    <div class="mb-3">
+        <label for="tipoDocumentoEditar" class="form-label">Tipo de Documento</label>
+        <input type="text" class="form-control form-control-sm" id="tipoDocumentoEditar"
+            value="{{ vendedor.tipo_documento }}" readonly>
+        <input type="hidden" name="tipoDocumento" value="{{ vendedor.tipo_documento }}">
+        <div id="tipoDocumentoError" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="numeroDocumentoVendedor" class="form-label">Número de Documento</label>
+        <input type="text" class="form-control form-control-sm" name="numeroDocumento"
+            value="{{ vendedor.numero_documento }}" readonly>
+        <div id="numeroDocumentoError" class="text-danger"></div> <!-- Error en tiempo real -->
+    </div>
+
+
+    <div class="mb-3">
+        <label for="nombreVendedor" class="form-label">Nombre</label>
+        <input type="text" class="form-control form-control-sm" name="nombreVendedor"
+            value="{{ vendedor.nombres_vendedor }}" required>
+        <div id="nombreVendedorError" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="telefonoVendedor" class="form-label">Teléfono</label>
+        <input type="tel" class="form-control form-control-sm" name="telefonoVendedor" value="{{ vendedor.telefono }}">
+        <div id="telefonoVendedorError" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="direccionVendedor" class="form-label">Dirección</label>
+        <input type="text" class="form-control form-control-sm" name="direccionVendedor"
+            value="{{ vendedor.direccion }}" required>
+        <div id="direccionVendedorError" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="emailVendedor" class="form-label">Email</label>
+        <input type="email" class="form-control form-control-sm" name="emailVendedor" value="{{ vendedor.email }}"
             readonly>
-            <input type="hidden" name="tipoDocumento" value="{{ vendedor.tipo_documento }}">
-            <div id="tipoDocumentoError" class="text-danger"></div>
-        </div>
+        <div id="emailVendedorError" class="text-danger"></div> <!-- Error en tiempo real -->
+    </div>
 
-        <div class="mb-3">
-            <label for="numeroDocumentoVendedor" class="form-label">Número de Documento</label>
-            <input type="text" class="form-control form-control-sm" name="numeroDocumento" value="{{ vendedor.numero_documento }}" readonly>
-            <div id="numeroDocumentoError" class="text-danger"></div> <!-- Error en tiempo real -->
-        </div>
-        
+    <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
 
-        <div class="mb-3">
-            <label for="nombreVendedor" class="form-label">Nombre</label>
-            <input type="text" class="form-control form-control-sm" name="nombreVendedor" value="{{ vendedor.nombres_vendedor }}" required>
-            <div id="nombreVendedorError" class="text-danger"></div>
-        </div>
+</form>
 
-        <div class="mb-3">
-            <label for="telefonoVendedor" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control form-control-sm" name="telefonoVendedor" value="{{ vendedor.telefono }}">
-            <div id="telefonoVendedorError" class="text-danger"></div>
-        </div>
-
-        <div class="mb-3">
-            <label for="direccionVendedor" class="form-label">Dirección</label>
-            <input type="text" class="form-control form-control-sm" name="direccionVendedor" value="{{ vendedor.direccion }}" required>
-            <div id="direccionVendedorError" class="text-danger"></div>
-        </div>
-
-        <div class="mb-3">
-            <label for="emailVendedor" class="form-label">Email</label>
-            <input type="email" class="form-control form-control-sm" name="emailVendedor" value="{{ vendedor.email }}" readonly>
-            <div id="emailVendedorError" class="text-danger"></div> <!-- Error en tiempo real -->
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
-       
-    </form>
-
-    <!-- Eliminar Vendedor -->
-    <form id="eliminarVendedorForm"  class="form-elv">
-        <input type="hidden" name="idvendedores" value="{{ vendedor['idvendedores']  }}">
-        <button type="submit" class="btn btn-danger form-control-sm">Eliminar Vendedor</button>
-    </form>
-    <div id="eliminarvendedorMensaje" class="mt-2"></div>
+<!-- Eliminar Vendedor -->
+<form id="eliminarVendedorForm" class="form-elvd">
+    <input type="hidden" name="idvendedores" value="{{ vendedor['idvendedores']  }}">
+    <button type="submit" class="btn btn-danger form-control-sm">Eliminar Vendedor</button>
+</form>
+<div id="eliminarvendedorMensaje" class="mt-2"></div>
 
 
 <script src="{{ url_for('static', filename='js/vendedores/Editar_vendedor.js') }}"></script>
@@ -76,9 +77,3 @@
 {% endif %}
 
 {% endblock %}
-
-
-
-
-
-    
