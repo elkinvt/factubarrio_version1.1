@@ -1,14 +1,15 @@
 {% extends 'layout.html' %}
+
+{% block body_class %}pagina-crear{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2>Crear Usuario</h2>
-    <form  id = 'crear-usuario-form' action="{{ url_for('usuarios_crear') }}" method="POST">
+    <h2 class="title">Crear Usuario</h2>
+    <form class="form"  id = 'crear-usuario-form' action="{{ url_for('usuarios_crear') }}" method="POST">
         <div class="mb-3">
             <label for="nombre">Nombre de usuario:</label>
             <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
             <small>Por favor, ingresa solo tu primer nombre y primer apellido.</small>
-            <div class="text-danger" id="nombreError"></div>
-            
+            <div class="text-danger" id="nombreError"></div> 
         </div>
 
         <div class="mb-3">
@@ -33,9 +34,9 @@
             <div class="text-danger" id="contraseñaError"></div>
         </div>
         
-        <button type="submit" class="btn btn-primary form-control-sm">Crear Usuario</button>
+        <button type="submit" class="btn btn-primary btn-block">Crear Usuario</button>
+
     </form>
-</div>
 
 <script src="{{ url_for('static', filename='js/usuarios/Crear_usuario.js') }}"></script>
 

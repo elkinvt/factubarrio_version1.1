@@ -1,22 +1,17 @@
 {% extends 'layout.html' %}
 {% block content %}
-
-<div class="container mt-5">
     {% if not usuario %}
-        <h2>Buscar usuario</h2>
-        <form action="/usuarios_editar" method="GET">
+        <h2 class="title">Buscar usuario</h2>
+        <form class="form" action="/usuarios_editar" method="GET">
             <input type="text" placeholder="Ingrese nombre de usuario para buscar" class="form-control form-control-sm"
                 name="nombre">
-
-            <button type="submit" class="btn btn-primary mt-2 form-control-sm">Buscar</button>
+            <button type="submit" class="btn btn-primary mt-2 btn-block">Buscar</button>
         </form>
     {% endif %}
-</div>
 
 {% if usuario %}
-<div class="container mt-5">
-    <h2>Editar usuario</h2>
-    <form id="formEditarusuario">
+    <h2 class="title">Editar usuario</h2>
+    <form class="form" id="formEditarusuario">
         <!-- Incluye el ID del usuario como un campo oculto -->
         <input type="hidden" id="usuarioId" name="usuarioId" value="{{ usuario['id_usuario'] }}">
 
@@ -24,7 +19,6 @@
             <label for="nombre">Nombre de usuario:</label>
             <input type="text" class="form-control form-control-sm" id="nombre" name="nombreUsuario" placeholder="Ej. Juan Pérez" value="{{ usuario['nombres_usuario'] }}" required>
             <div class="text-danger" id="nombreUsuarioError"></div>
-
         </div>
 
         <div class="mb-3">
@@ -62,33 +56,30 @@
             <div class="text-danger" id="estadousuarioError"></div>
         </div>
 
-        <button type="submit" class="btn btn-primary form-control-sm">Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
 
     </form>
 
     <!-- Bloquear/Desbloquear Usuario -->
-    <form id="toggleEstadoUsuarioForm" class="mt-3">
-        
+    <form class="form-e" id="toggleEstadoUsuarioForm">
         <input type="hidden" name="id_usuario" id="id_usuario" value="{{ usuario['id_usuario'] }}">
-        <button type="submit" class="btn btn-warning form-control-sm">
+        <button type="submit" class="btn btn-warning btn-block">
             {% if usuario['is_active'] %}
                 Desactivar usuario
             {% else %}
                 Activar usuario
             {% endif %}
         </button>
+        <div id="toggleEstadoUsuarioMensaje" class="mt-2"></div>
     </form>
-    <div id="toggleEstadoUsuarioMensaje" class="mt-2"></div>
-
+    
    <!-- Eliminar usuario -->
-    <form id="eliminarUsuarioForm"  class="mt-2">
+    <form class="form-el" id="eliminarUsuarioForm">
         <!--<input type="hidden" name="nombreUsuario" value="{{ usuario['nombres_usuario'] }}">-->
         <input type="hidden" name="id_usuario" id="id_usuario_eliminar" value="{{ usuario['id_usuario'] }}">
-        <button type="submit" class="btn btn-danger form-control-sm">Eliminar usuario</button>
+        <button type="submit" class="btn btn-danger btn-block">Eliminar usuario</button>
+        <div id="EliminarUsuarioMensaje" class="mt-2"></div>
     </form>
-    <div id="EliminarUsuarioMensaje" class="mt-2"></div>
-
-</div>
 
 <script src="{{ url_for('static', filename='js/usuarios/Editar_usuario.js') }}"></script>
 

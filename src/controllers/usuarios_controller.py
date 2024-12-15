@@ -12,7 +12,7 @@ class Usuarios_Controller(FlaskController):
     @role_required(['administrador'])
     def usuarios_ver():
         usuarios = Usuarios.obtener_usuarios()
-        return render_template('form_ver_usuario.html', titulo_pagina="Ver usurios", usuarios=usuarios)
+        return render_template('form_ver_usuario.html', titulo_pagina="Ver Usurios", usuarios=usuarios)
 
     #--------------
 
@@ -21,7 +21,7 @@ class Usuarios_Controller(FlaskController):
     @role_required(['administrador'])
     def usuarios_crear():
         if request.method == 'GET':
-            return render_template('form_crear_usuario.html', titulo_pagina="Crear usuario")
+            return render_template('form_crear_usuario.html', titulo_pagina="Crear Usuario")
 
         if request.method == 'POST':
             # Extrae los datos del formulario

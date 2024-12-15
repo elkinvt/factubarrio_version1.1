@@ -13,9 +13,17 @@ class LoginController(FlaskController):
     def login():    
         if request.method == 'POST':
             nombre_usuario = request.form.get('nombre_usuario')                
-            contraseña = request.form.get('contraseña')    
+            contraseña = request.form.get('contraseña')
+            
+            # Validar usuario  
             usuario_valido = Usuarios.validar_usuario_login(nombre_usuario, contraseña)
             if usuario_valido:
+                # Verificar si el usuario está activo
+                #if usuario_valido.is_active != 'False':  # Cambia 'activo' según el valor real en tu base de datos
+                    #flash('Tu cuenta está desactivada. Contacta al administrador.', 'danger')
+                    #return redirect(url_for('login'))
+                
+                # Iniciar sesión si el usuario está activo
                 login_user(usuario_valido)
                 # Guardar el ID del usuario en la sesión
                 session['usuario_id'] = usuario_valido.id_usuario  # Asegúrate de que `id_usuario` es el campo correcto
