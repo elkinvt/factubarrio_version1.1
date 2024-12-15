@@ -1,90 +1,93 @@
 {% extends 'layout.html' %}
 {% block content %}
-    {% if not usuario %}
-        <h2 class="title">Buscar usuario</h2>
-        <form class="form" action="/usuarios_editar" method="GET">
-            <input type="text" placeholder="Ingrese nombre de usuario para buscar" class="form-control form-control-sm"
-                name="nombre">
-            <button type="submit" class="btn btn-primary mt-2 btn-block">Buscar</button>
-        </form>
-    {% endif %}
+{% if not usuario %}
+<h2 class="title">Buscar usuario</h2>
+<form class="form" action="/usuarios_editar" method="GET">
+    <input type="text" placeholder="Ingrese nombre de usuario para buscar" class="form-control form-control-sm"
+        name="nombre">
+    <button type="submit" class="btn btn-primary mt-2 btn-block">Buscar</button>
+</form>
+{% endif %}
 
 {% if usuario %}
-    <h2 class="title">Editar usuario</h2>
-    <form class="form" id="formEditarusuario">
-        <!-- Incluye el ID del usuario como un campo oculto -->
-        <input type="hidden" id="usuarioId" name="usuarioId" value="{{ usuario['id_usuario'] }}">
+<h2 class="title">Editar usuario</h2>
+<form class="form" id="formEditarusuario">
+    <!-- Incluye el ID del usuario como un campo oculto -->
+    <input type="hidden" id="usuarioId" name="usuarioId" value="{{ usuario['id_usuario'] }}">
 
-        <div class="mb-3">
-            <label for="nombre">Nombre de usuario:</label>
-            <input type="text" class="form-control form-control-sm" id="nombre" name="nombreUsuario" placeholder="Ej. Juan Pérez" value="{{ usuario['nombres_usuario'] }}" required>
-            <div class="text-danger" id="nombreUsuarioError"></div>
-        </div>
+    <div class="mb-3">
+        <label for="nombre">Nombre de usuario:</label>
+        <input type="text" class="form-control form-control-sm" id="nombre" name="nombreUsuario"
+            placeholder="Ej. Juan Pérez" value="{{ usuario['nombres_usuario'] }}" required>
+        <div class="text-danger" id="nombreUsuarioError"></div>
+    </div>
 
-        <div class="mb-3">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control form-control-sm" id="email" name="emailUsuario" value="{{ usuario['email'] }}" oninput="verificarEmail(this.value)" required>
-            <div class="text-danger" id="emailUsuarioError"></div>
-        </div>
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control form-control-sm" id="email" name="emailUsuario"
+            value="{{ usuario['email'] }}" oninput="verificarEmail(this.value)" required>
+        <div class="text-danger" id="emailUsuarioError"></div>
+    </div>
 
-        <div class="mb-3">
-            <label for="nuevaContraseña">Nueva Contraseña:</label>
-            <input type="password" class="form-control form-control-sm" id="nuevaContraseña" name="nuevaContraseña" placeholder="Dejar en blanco si no deseas cambiarla">
-            <div class="text-danger" id="nuevaContraseñaError"></div>
-        </div>
+    <div class="mb-3">
+        <label for="nuevaContraseña">Nueva Contraseña:</label>
+        <input type="password" class="form-control form-control-sm" id="nuevaContraseña" name="nuevaContraseña"
+            placeholder="Dejar en blanco si no deseas cambiarla">
+        <div class="text-danger" id="nuevaContraseñaError"></div>
+    </div>
 
-        <div class="mb-3">
-            <label for="confirmarContraseña">Confirmar Nueva Contraseña:</label>
-            <input type="password" class="form-control form-control-sm" id="confirmarContraseña" name="confirmarContraseña" placeholder="Reingresa la nueva contraseña">
-            <div class="text-danger" id="confirmarContraseñaError"></div>
-        </div>
+    <div class="mb-3">
+        <label for="confirmarContraseña">Confirmar Nueva Contraseña:</label>
+        <input type="password" class="form-control form-control-sm" id="confirmarContraseña" name="confirmarContraseña"
+            placeholder="Reingresa la nueva contraseña">
+        <div class="text-danger" id="confirmarContraseñaError"></div>
+    </div>
 
-        <div class="mb-3">
-            <label for="rol">Rol:</label>
-            <select id="rol" name="rolUsuario" class="form-control form-control-sm" required>
-                <option value="">Seleccione un rol</option>
-                <option value="administrador" {%if usuario['rol'] == 'administrador' %} selected{% endif %}>Administrador</option>
-                <option value="vendedor" {%if usuario['rol'] == 'vendedor' %} selected{% endif %}>Vendedor</option>
-            </select>
-            <div class="text-danger" id="rolUsuarioError"></div>
-        </div>
+    <div class="mb-3">
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rolUsuario" class="form-control form-control-sm" required>
+            <option value="">Seleccione un rol</option>
+            <option value="administrador" {%if usuario['rol']=='administrador' %} selected{% endif %}>Administrador
+            </option>
+            <option value="vendedor" {%if usuario['rol']=='vendedor' %} selected{% endif %}>Vendedor</option>
+        </select>
+        <div class="text-danger" id="rolUsuarioError"></div>
+    </div>
 
-        <div class="mb-3">
-            <label for="estadoCliente" class="form-label">Estado del usuario</label>
-            <input type="text" class="form-control form-control-sm" id="estadousuario" name="estadousuario"
-                value="{{ 'Activo' if usuario['is_active'] else 'Inactivo' }}" readonly>
-            <div class="text-danger" id="estadousuarioError"></div>
-        </div>
+    <div class="mb-3">
+        <label for="estadoCliente" class="form-label">Estado del usuario</label>
+        <input type="text" class="form-control form-control-sm" id="estadousuario" name="estadousuario"
+            value="{{ 'Activo' if usuario['is_active'] else 'Inactivo' }}" readonly>
+        <div class="text-danger" id="estadousuarioError"></div>
+    </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
+    <button type="submit" class="btn btn-primary btn-block">Guardar Cambios</button>
 
-    </form>
+</form>
 
-    <!-- Bloquear/Desbloquear Usuario -->
-    <form class="form-e" id="toggleEstadoUsuarioForm">
-        <input type="hidden" name="id_usuario" id="id_usuario" value="{{ usuario['id_usuario'] }}">
-        <button type="submit" class="btn btn-warning btn-block">
-            {% if usuario['is_active'] %}
-                Desactivar usuario
-            {% else %}
-                Activar usuario
-            {% endif %}
-        </button>
-        <div id="toggleEstadoUsuarioMensaje" class="mt-2"></div>
-    </form>
-    
-   <!-- Eliminar usuario -->
-    <form class="form-el" id="eliminarUsuarioForm">
-        <!--<input type="hidden" name="nombreUsuario" value="{{ usuario['nombres_usuario'] }}">-->
-        <input type="hidden" name="id_usuario" id="id_usuario_eliminar" value="{{ usuario['id_usuario'] }}">
-        <button type="submit" class="btn btn-danger btn-block">Eliminar usuario</button>
-        <div id="EliminarUsuarioMensaje" class="mt-2"></div>
-    </form>
+<!-- Bloquear/Desbloquear Usuario -->
+<form class="form-e" id="toggleEstadoUsuarioForm">
+    <input type="hidden" name="id_usuario" id="id_usuario" value="{{ usuario['id_usuario'] }}">
+    <button type="submit" class="btn btn-warning btn-block">
+        {% if usuario['is_active'] %}
+        Desactivar usuario
+        {% else %}
+        Activar usuario
+        {% endif %}
+    </button>
+    <div id="toggleEstadoUsuarioMensaje" class="mt-2"></div>
+</form>
+
+<!-- Eliminar usuario -->
+<form class="form-el" id="eliminarUsuarioForm">
+    <!--<input type="hidden" name="nombreUsuario" value="{{ usuario['nombres_usuario'] }}">-->
+    <input type="hidden" name="id_usuario" id="id_usuario_eliminar" value="{{ usuario['id_usuario'] }}">
+    <button type="submit" class="btn btn-danger btn-block">Eliminar usuario</button>
+    <div id="EliminarUsuarioMensaje" class="mt-2"></div>
+</form>
 
 <script src="{{ url_for('static', filename='js/usuarios/Editar_usuario.js') }}"></script>
 
 {% endif %}
 
 {% endblock %}
-    
-    
