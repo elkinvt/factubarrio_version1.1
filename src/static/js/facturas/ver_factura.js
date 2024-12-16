@@ -1,8 +1,25 @@
 //Código JavaScript para buscar la factura por fecha
+$(document).ready(function () {
+    // Captura el evento submit del formulario
+    $('#formConsultarFacturas').on('submit', function (event) {
+        event.preventDefault(); // Evita la recarga de la página
+        buscarFacturasPorFecha(); // Llama a la función de búsqueda
+    });
+});
+
+// Código para buscar las facturas por fecha
 function buscarFacturasPorFecha() {
     let fechaIngresada = $('#fechaConsulta').val();
     let contenedor = $('#listaFacturas');
     contenedor.empty(); // Limpia contenido anterior
+
+    // Validación de fecha
+    if (!fechaIngresada) {
+        $('#fechaConsultaError').text('Por favor ingresa una fecha válida.');
+        return;
+    } else {
+        $('#fechaConsultaError').text(''); // Limpia mensaje de error previo
+    }
 
     $.ajax({
         url: `/facturas_por_fecha`,

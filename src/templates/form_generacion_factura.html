@@ -1,8 +1,10 @@
 {% extends 'layout.html' %}
+
+{% block body_class %}pagina-generar-factura{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2>Generar Factura</h2>
-    <form id="formFactura" method="POST" action="{{ url_for('generar_factura') }}">
+    <h2 class="title">Generar Factura</h2>
+    <form class="form" id="formFactura" method="POST" action="{{ url_for('generar_factura') }}">
 
         <!-- Campo oculto para almacenar productos -->
         <input type="hidden" id="productosFactura" name="productosFactura">
@@ -81,13 +83,12 @@
 
 
         <!-- Agregar Producto -->
-        <button type="button" class="btn btn-primary form-control-sm" onclick="agregarProductoAFactura()">Agregar a Factura</button>
+        <button type="button" class="btn btn-primary btn-block" onclick="agregarProductoAFactura()">Agregar a Factura</button>
 
         <!-- Detalles de la Factura -->
         <div id="detallesFactura" class="mt-4"></div>
 
         <!-- Tabla de Detalles -->
-        <div class="container mb-3">
             <table class="table mt-5 form-control-sm">
                 <thead>
                     <tr>
@@ -114,19 +115,19 @@
                     </tr>
                 </tfoot>
             </table>
-        </div>
 
         <!-- Botones de Acción -->
         <div class="d-flex justify-content-center mb-3">
-            <button type="submit" class="btn btn-success form-control-sm" style="margin-right: 20px;">Pagar Factura</button>
-            <button type="button" class="btn btn-danger form-control-sm" onclick="anularFactura()">Anular Factura</button>
+            <button type="submit" class="btn btn-success btn-block" style="margin-right: 20px;">Pagar Factura</button>
+            <button type="button" class="btn btn-danger btn-block" onclick="anularFactura()">Anular Factura</button>
         </div>
 
-         <!-- Mensajes generales -->
-         <div id="facturaSuccess" class="text-success mt-3"></div>
-         <div id="facturaError" class="text-danger mt-3"></div>
     </form>
-</div>
+
+     <!-- Mensajes generales -->
+     <div id="facturaSuccess" class="text-success mt-3"></div>
+     <div id="facturaError" class="text-danger mt-3"></div>
+
 
 <script src="{{ url_for('static', filename='js/facturas/generar_factura.js') }}"></script>
 

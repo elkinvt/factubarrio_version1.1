@@ -83,9 +83,7 @@ class Factura(Base,RoleMixin):
                 facturas = session.query(Factura).filter(Factura.fecha == fecha).all()
 
                 if facturas:
-
-                
-
+                    
                     # Serializar los datos de las facturas
                     facturas_data = [{
                         'id': factura.id,

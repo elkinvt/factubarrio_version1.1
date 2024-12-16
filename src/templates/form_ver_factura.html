@@ -1,25 +1,38 @@
 {% extends 'layout.html' %}
-{% block content %}
-<div class="container mt-5">
-    <h2>Consultar Facturas por Fecha</h2>
-    <input type="date" id="fechaConsulta" class="form-control mb-3 form-control-sm">
-    <button class="btn btn-primary form-control-sm" onclick="buscarFacturasPorFecha()">Buscar Facturas</button>
-    <table class="table table-striped mt-3 fo">
-        <thead>
-            <tr>
-                <th>ID Factura</th>
-                <th>Fecha</th>
-                <th>Cliente</th> <!-- Encabezado para el nombre del cliente -->
-                <th>Total</th>
-                <th>Detalles</th>
-            </tr>
-        </thead>
 
-        <tbody id="listaFacturas">
-            <!-- Las facturas filtradas se mostrarán aquí -->
-        </tbody>
-    </table>
-</div>
+{% block body_class %}pagina-ver_facturas{% endblock %}
+
+{% block content %}
+<h2 class="title">Consultar Facturas por Fecha</h2>
+
+<!-- Formulario para consultar facturas -->
+<form class="form" id="formConsultarFacturas">
+    <div id="mensajeErrorGeneral" class="text-danger"></div>
+
+    <div class="mb-3">
+        <input type="date" id="fechaConsulta" class="form-control mb-3 form-control-sm">
+        <div id="fechaConsultaError" class="text-danger">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Buscar Facturas</button>
+</form>
+
+<hr>
+
+<table class="table table-striped mt-3 fo">
+    <thead>
+        <tr>
+            <th>ID Factura</th>
+            <th>Fecha</th>
+            <th>Cliente</th> <!-- Encabezado para el nombre del cliente -->
+            <th>Total</th>
+            <th>Detalles</th>
+        </tr>
+    </thead>
+
+    <tbody id="listaFacturas">
+        <!-- Las facturas filtradas se mostrarán aquí -->
+    </tbody>
+</table>
 <!-- Modal para mostrar detalles de factura -->
 <div class="modal fade" id="facturaModal" tabindex="-1" aria-labelledby="facturaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

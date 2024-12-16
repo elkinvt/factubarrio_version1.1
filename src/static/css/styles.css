@@ -98,7 +98,26 @@ body {
     margin-top: -600px;
 }
 
+.pagina-ver_facturas .form {
+    margin-left: 400px;
+    margin-top: -50px;
+    width: 50%;
+    max-width: 800px; /* Opcional: limitar el ancho */
+}
 
+.pagina-ver_facturas .form-session {
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 70%;
+    max-width: 800px; /* Opcional: limitar el ancho */
+}
+
+.pagina-generar-factura .form {
+    margin-left: 210px;
+    margin-top: -50px;
+    width: 50%;
+    max-width: 800px; /* Opcional: limitar el ancho */
+}
 .cerrar-sesion {
     position: fixed;
     top: 5px;
