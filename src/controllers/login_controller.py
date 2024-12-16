@@ -19,9 +19,9 @@ class LoginController(FlaskController):
             usuario_valido = Usuarios.validar_usuario_login(nombre_usuario, contraseña)
             if usuario_valido:
                 # Verificar si el usuario está activo
-                #if usuario_valido.is_active != 'False':  # Cambia 'activo' según el valor real en tu base de datos
-                    #flash('Tu cuenta está desactivada. Contacta al administrador.', 'danger')
-                    #return redirect(url_for('login'))
+                if usuario_valido.is_active is False:  # Cambia 'activo' según el valor real en tu base de datos
+                    flash('Tu cuenta está desactivada. Contacta al administrador.', 'danger')
+                    return redirect(url_for('login'))
                 
                 # Iniciar sesión si el usuario está activo
                 login_user(usuario_valido)

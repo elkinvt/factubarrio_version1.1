@@ -44,7 +44,7 @@ function buscarFacturasPorFecha() {
             }
         },
         error: function (xhr, status, error) {
-            contenedor.append(`<tr><td colspan="5" class="text-center">Error: ${xhr.responseText || 'No se encontraron facturas para la fecha seleccionada.'}</td></tr>`);
+            contenedor.append(`<tr><td colspan="5" class="text-center"> ${xhr.responseText || 'No se encontraron facturas para la fecha seleccionada.'}</td></tr>`);
         }
     });
 }

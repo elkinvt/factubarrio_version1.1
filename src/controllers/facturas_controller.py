@@ -144,7 +144,7 @@ class Facturas_Controller(FlaskController):
         if facturas_data:
             return jsonify(facturas_data), 200
         else:
-            return jsonify({'message': 'No se encontraron facturas para la fecha seleccionada'}), 404
+            return 'No se encontraron facturas para la fecha seleccionada', 404
     
     #---------------
 
@@ -158,7 +158,7 @@ class Facturas_Controller(FlaskController):
         if factura_data:
             return jsonify(factura_data), 200
         else:
-            return jsonify({'message': 'Factura no encontrada'}), 404
+            return 'Factura no encontrada', 404
     
     #-----------------
 
