@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h1>Bienvenido, {{ current_user.nombres_usuario }}</h1>
-<div>{{ current_user.rol }}</div>
+<h1 class="bienvenido">¡Bienvenido/a al sistema!, {{ current_user.nombres_usuario }}</h1>
+<p class="p">Rol:{{ current_user.rol }}</p>
 
 {% endblock %}

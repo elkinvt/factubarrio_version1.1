@@ -25,7 +25,7 @@
 
     <div class="mb-3">
         <label for="categoriaProducto" class="form-label">Categoría</label>
-        <select class="form-select form-control-sm" id="categoriaProducto" name="categoriaProducto" required>
+        <select class="form-select form-select-sm" id="categoriaProducto" name="categoriaProducto" required>
             <option value="">Seleccione una categoría</option>
             {% if categorias %}
             {% for categoria in categorias %}
@@ -47,7 +47,7 @@
 
     <div class="mb-3">
         <label for="unidadMedidaProducto" class="form-label">Unidad de Medida</label>
-        <select class="form-select form-control-sm" id="unidadMedidaProducto" name="unidadMedidaProducto" required>
+        <select class="form-select form-select-sm" id="unidadMedidaProducto" name="unidadMedidaProducto" required>
             <option value="">Seleccione una unidad de medida</option>
             {% for unidad in unidades_padre %}
             <optgroup label="{{ unidad.unidad_medida }}">
